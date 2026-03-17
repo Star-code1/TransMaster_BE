@@ -1,11 +1,16 @@
-const admin = require("firebase-admin");
-const serviceAccount = require("./serviceAccountKey.json");
+const admin = require('firebase-admin');
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
+// Thay vì require file JSON, ta đọc từ biến môi trường
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+  });
+}
 
 const db = admin.firestore();
+module.exports = { db };
 
 // Hàm lấy câu hỏi ngẫu nhiên theo chủ đề
 async function getRandomQuestion(topic = "Tin tức") {
