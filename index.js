@@ -8,7 +8,7 @@ const app = express();
 app.use(cors(), express.json());
 
 app.use(cors({
-  origin: 'https://trans-master-fe.vercel.app/' // Thay bằng link web thật của ông
+  origin: 'https://trans-master-fe.vercel.app' // Thay bằng link web thật của ông
 }));
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
