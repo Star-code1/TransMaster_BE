@@ -9,6 +9,7 @@ app.use(cors(), express.json());
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
+
 // 1. API Lấy câu hỏi lọc theo Category và Direction
 app.get('/api/question', async (req, res) => {
     const { category, direction } = req.query; 
@@ -29,7 +30,6 @@ app.get('/api/question', async (req, res) => {
     }
 });
 
-// 2. API Chấm điểm với Prompt chuyên sâu
 // 2. API Chấm điểm với Prompt giáo viên chi tiết hơn
 app.post('/api/grade', async (req, res) => {
     const { originalText, userTranslation, direction } = req.body;
